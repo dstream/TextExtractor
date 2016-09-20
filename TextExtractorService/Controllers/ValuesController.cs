@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
+using TikaOnDotNet.TextExtraction;
 
 namespace TextExtractorService.Controllers
-{
-    [Authorize]
+{    
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public TextExtractionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return new TextExtractor().Extract(HttpContext.Current.Server.MapPath("/Storage/sample.rtf"));  
         }
 
         // GET api/values/5
